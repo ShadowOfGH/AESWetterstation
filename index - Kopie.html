@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Navigation Beispiel</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+
+    <nav>
+        <img src="AESLogo.png" alt="Logo">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Über uns</a></li>
+        </ul>
+    </nav>
+</head>
+
+<body>
+    <div id="home" style="padding-top: 20px">
+        <h1>Willkommen auf der Startseite</h1>
+    </div>
+
+    <div id="about">
+        <h1>Über uns</h1>
+        <p>Auf dieser Webseite kann man sich über die Feuchtigkeit und den Niederschlag informieren.</p>
+    </div>
+
+    <!-- Container für die beiden Graphen nebeneinander, aber der erste oben -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <!--Temperaturdiagramm-->
+        <canvas id="chart1" width="400" height="200" style="margin-bottom: 20px;"></canvas>
+        <!--Luftdruckdiagramm-->  
+        <canvas id="chart2" width="400" height="200" style="margin-bottom: 20px;"></canvas>
+        <!--Luftfeuchtigkeitdiagramm-->
+        <canvas id="chart3" width="400" height="200" style="margin-bottom: 20px;"></canvas>
+        <!--Windgeschwindigkeitsdiagramm-->
+        <canvas id="chart4" width="400" height="200" style="margin-bottom: 20px;"></canvas>
+        <!--Windrichtungsdiagramm-->
+        <canvas id="chart5" width="400" height="200" style="margin-bottom: 20px;"></canvas>
+        <!--Regenratediagramm-->
+        <canvas id="chart6" width="400" height="200" style="margin-bottom: 20px;"></canvas>
+        <!--Regenmengediagramm-->
+        <canvas id="chart7" width="400" height="200" style="margin-bottom: 20px;"></canvas>
+    </div>
+
+    <script>
+        // Canvas holen
+        const ctx1 = document.getElementById('chart1').getContext('2d');
+        const ctx2 = document.getElementById('chart2').getContext('2d');
+        const ctx3 = document.getElementById('chart3').getContext('2d');
+        const ctx4 = document.getElementById('chart4').getContext('2d');
+        const ctx5 = document.getElementById('chart5').getContext('2d');
+        const ctx6 = document.getElementById('chart6').getContext('2d');
+        const ctx7 = document.getElementById('chart7').getContext('2d');
+
+        // Erster Graph: Balkendiagramm
+        const Chart1 = new Chart(ctx1, {
+            type: 'bar', // Graphen Typ: Balken
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], // x-Werte
+                datasets: [{
+                    label: 'Votes', // Label
+                    data: [12, 19, 3, 5, 2, 3], // y-Werte
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1 // Liniendicke
+                }]
+            },
+            options: {
+                responsive: true, // anpassend
+                scales: {
+                    y: {
+                        beginAtZero: true // Ordinatenabschnitt: 0
+                    }
+                }
+            }
+        });
+// Zweiter Graph: Liniendiagramm (mit Scrollen)
+const Chart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', "July", "August", "September"], 
+        datasets: [{
+            label: 'Luftdruck', 
+            data: [65, 59, 80, 81, 56, 55, 10, 20, 30, 40, 50], 
+            fill: false, 
+            borderColor: 'rgba(75, 192, 192, 1)', 
+            backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+            tension: 0, 
+            pointRadius: 5, 
+            pointBackgroundColor: 'rgba(255, 99, 132, 1)' 
+        }]
+    },
+    options: {
+        responsive: true, 
+        scales: {
+            x: {
+                type: 'category', // Die X-Achse bleibt kategorisch
+                position: 'bottom', 
+                ticks: {
+                    autoSkip: true,
+                    maxRotation: 0, // Verhindert Drehung der X-Achsen-Ticks
+                    minRotation: 0
+                },
+                grid: {
+                    display: true,
+                    drawOnChartArea: true
+                }
+            },
+            y: {
+                beginAtZero: true 
+            }
+        },
+        plugins: {
+            legend: {
+                display: true, 
+                position: 'top', 
+            },
+            zoom: {
+                pan: {
+                    enabled: true,  // Panning (Scrollen) aktivieren
+                    mode: 'x',      // Nur horizontales Panning
+                    threshold: 10,   // Schwellwert für das Panning festlegen
+                    // On category scale, factor of pan velocity
+                    speed: 20,
+                },
+                zoom: {
+                    enabled: false, // Zoom deaktivieren
+                    mode: 'xy',     // Falls du Zoom aktivieren möchtest, kannst du es hier anpassen
+                }
+            }
+        }
+    }
+});
+
+
+        // Zweiter Graph: Liniendiagramm
+        const Chart3 = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'], 
+                datasets: [{
+                    label: 'Luftfeuchtigkeit', 
+                    data: [65, 59, 80, 81, 56, 55], 
+                    fill: false, 
+                    borderColor: 'rgba(75, 192, 192, 1)', 
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                    tension: 0, 
+                    pointRadius: 5, 
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)' 
+                }]
+            },
+            options: {
+                responsive: true, 
+                scales: {
+                    y: {
+                        beginAtZero: true 
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true, 
+                        position: 'top', 
+                    }
+                }
+            }
+        });
+
+        // Zweiter Graph: Liniendiagramm
+        const Chart4 = new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'], 
+                datasets: [{
+                    label: 'Windgeschwindigkeit', 
+                    data: [65, 59, 80, 81, 56, 55], 
+                    fill: false, 
+                    borderColor: 'rgba(75, 192, 192, 1)', 
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                    tension: 0, 
+                    pointRadius: 5, 
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)' 
+                }]
+            },
+            options: {
+                responsive: true, 
+                scales: {
+                    y: {
+                        beginAtZero: true 
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true, 
+                        position: 'top', 
+                    }
+                }
+            }
+        });
+
+        // Zweiter Graph: Liniendiagramm
+        const Chart5 = new Chart(ctx5, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'], 
+                datasets: [{
+                    label: 'Windrichtung', 
+                    data: [65, 59, 80, 81, 56, 55], 
+                    fill: false, 
+                    borderColor: 'rgba(75, 192, 192, 1)', 
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                    tension: 0, 
+                    pointRadius: 5, 
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)' 
+                }]
+            },
+            options: {
+                responsive: true, 
+                scales: {
+                    y: {
+                        beginAtZero: true 
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true, 
+                        position: 'top', 
+                    }
+                }
+            }
+        });
+
+        // Zweiter Graph: Liniendiagramm
+        const Chart6 = new Chart(ctx6, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'], 
+                datasets: [{
+                    label: 'Regenrate', 
+                    data: [65, 59, 80, 81, 56, 55], 
+                    fill: false, 
+                    borderColor: 'rgba(75, 192, 192, 1)', 
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                    tension: 0, 
+                    pointRadius: 5, 
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)' 
+                }]
+            },
+            options: {
+                responsive: true, 
+                scales: {
+                    y: {
+                        beginAtZero: true 
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true, 
+                        position: 'top', 
+                    }
+                }
+            }
+        });
+
+        // Zweiter Graph: Liniendiagramm
+        const Chart7 = new Chart(ctx7, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'], 
+                datasets: [{
+                    label: 'Regenmenge', 
+                    data: [65, 59, 80, 81, 56, 55], 
+                    fill: false, 
+                    borderColor: 'rgba(75, 192, 192, 1)', 
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                    tension: 0, 
+                    pointRadius: 5, 
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)' 
+                }]
+            },
+            options: {
+                responsive: true, 
+                scales: {
+                    y: {
+                        beginAtZero: true 
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true, 
+                        position: 'top', 
+                    }
+                }
+            }
+        });
+    </script>
+
+    <!-- Uhrzeit Anzeige -->
+    <div id="uhr" style="font-size: 30px; position: fixed; top: 50px; right: 10px; color: white; background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 5px; z-index: 9999;"></div>
+
+    <script>
+        function uhrzeit() {
+            var jetzt = new Date();
+            var h = jetzt.getHours();
+            var m = jetzt.getMinutes();
+            var s = jetzt.getSeconds();
+            m = fuehrendeNull(m);
+            s = fuehrendeNull(s);
+            document.getElementById("uhr").innerHTML = h + ":" + m + ":" + s;
+            setTimeout(uhrzeit, 500);
+        }
+
+        function fuehrendeNull(zahl) {
+            return (zahl < 10 ? "0" + zahl : zahl);
+        }
+
+        uhrzeit();
+    </script>
+
+    <script>
+        // JavaScript, um das Menü aus menu.html zu laden
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-container').innerHTML = data;
+            });
+    </script>
+
+</body>
+</html>
+
+
