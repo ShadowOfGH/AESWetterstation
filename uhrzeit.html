@@ -1,0 +1,23 @@
+<div id="uhr" style="font-size: 30px;  position: fixed; top: 10px; right: 10px; color: black"></div>   
+
+
+<script>
+function uhrzeit() {
+    var jetzt = new Date();
+    var h = jetzt.getHours();
+    var m = jetzt.getMinutes();
+    var s = jetzt.getSeconds();
+    m = fuehrendeNull(m);
+    s = fuehrendeNull(s);
+    document.getElementById("uhr").innerHTML = h + ":" + m + ":" + s;
+    setTimeout(uhrzeit, 500);
+}
+
+function fuehrendeNull(zahl) {
+    return (zahl < 10 ? "0" + zahl : zahl);
+}
+
+uhrzeit();
+</script>
+
+
