@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontal scrollbarer Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Container für das Scrollen */
+        .graph-container {
+            width: 80%; /* Breite des Containers, wo der Graph angezeigt wird */
+            margin: 20px auto;
+            overflow-x: auto; /* Horizontales Scrollen aktivieren */
+            white-space: nowrap; /* Verhindert Zeilenumbruch */
+        }
+
+        /* Canvas, das den Chart darstellt */
+        canvas {
+            width: 2000px; /* Canvas breiter machen als der Container, sodass Scrollen erforderlich wird */
+            height: 400px; /* Höhe des Graphen */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="graph-container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const labels = Array.from({ length: 200 }, (_, i) => `Label ${i + 1}`); // Mehr Labels für Scrollen
+        const data = Array.from({ length: 200 }, () => Math.floor(Math.random() * 100));
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Beispiel-Daten',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: false, // Deaktiviert automatische Anpassung
+                scales: {
+                    x: {
+                        type: 'category', // Kategorie-Achse
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 20, // Zeigt nur eine begrenzte Anzahl von Labels auf der X-Achse
+                        },
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

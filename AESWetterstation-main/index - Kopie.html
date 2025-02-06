@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Navigation Beispiel</title>
+    <script src="/js/chart.min.js"></script>
+    <script src="/js/chartjs-plugin-zoom.min.js"></script>
+
+    <nav>
+        <img src="AESLogo.png" alt="Logo">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Über uns</a></li>
+        </ul>
+    </nav>
+</head>
+
+<body>
+    <div id="home" style="padding-top: 20px">
+        <h1>Willkommen auf der Startseite</h1>
+    </div>
+
+    <div id="about">
+        <h1>Über uns</h1>
+        <p>Auf dieser Webseite kann man sich über die Feuchtigkeit und den Niederschlag informieren.</p>
+    </div>
+
+    <style>
+        /* Container für das Scrollen */
+        .graph-container {
+            width: 100%; /* Breite des Containers, wo der Graph angezeigt wird */
+            margin: 20px auto;
+        }
+
+        /* Einzelner Canvas-Container mit Scrollbar */
+        .canvas-wrapper {
+            width: 100%; /* Container soll die gesamte Breite des übergeordneten Containers einnehmen */
+            overflow-x: auto; /* Horizontales Scrollen aktivieren */
+            margin-bottom: 20px; /* Abstand zwischen den Diagrammen */
+        }
+
+        canvas {
+            width: 2000px; /* Breite des Canvas größer als der Container */
+            height: 400px; /* Höhe des Graphen */
+        }
+    </style>
+
+    <div class="graph-container">
+        <!-- Einzelner Canvas-Container für jedes Diagramm -->
+        <div class="canvas-wrapper">
+            <canvas id="chart1"> </canvas>
+        </div>
+        <div class="canvas-wrapper">
+            <canvas id="chart2"></canvas>
+        </div>
+        <div class="canvas-wrapper">
+            <canvas id="chart3"></canvas>
+        </div>
+        <div class="canvas-wrapper">
+            <canvas id="chart4"></canvas>
+        </div>
+        <div class="canvas-wrapper">
+            <canvas id="chart5"></canvas>
+        </div>
+        <div class="canvas-wrapper">
+            <canvas id="chart6"></canvas>
+        </div>
+        <div class="canvas-wrapper">
+            <canvas id="chart7"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Canvas holen
+        const ctx1 = document.getElementById('chart1').getContext('2d');
+        const ctx2 = document.getElementById('chart2').getContext('2d');
+        const ctx3 = document.getElementById('chart3').getContext('2d');
+        const ctx4 = document.getElementById('chart4').getContext('2d');
+        const ctx5 = document.getElementById('chart5').getContext('2d');
+        const ctx6 = document.getElementById('chart6').getContext('2d');
+        const ctx7 = document.getElementById('chart7').getContext('2d');
+
+        // Erster Graph: Balkendiagramm
+        const Chart1 = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: 'Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Zweiter Graph: Liniendiagramm (mit Scrollen)
+        const Chart2 = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', "July", "August", "September"],
+                datasets: [{
+                    label: 'Luftdruck',
+                    data: [65, 59, 80, 81, 56, 55, 10, 20, 30, 40, 50],
+                    fill: false,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    tension: 0,
+                    pointRadius: 5,
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)'
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    x: {
+                        type: 'category',
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 20,
+                        },
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+            }
+        });
+    </script>
+
+    <!-- Uhrzeit Anzeige -->
+    <div id="uhr" style="font-size: 30px; position: fixed; top: 50px; right: 10px; color: white; background-color: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 5px; z-index: 9999;"></div>
+
+    <script>
+        function uhrzeit() {
+            var jetzt = new Date();
+            var h = jetzt.getHours();
+            var m = jetzt.getMinutes();
+            var s = jetzt.getSeconds();
+            m = fuehrendeNull(m);
+            s = fuehrendeNull(s);
+            document.getElementById("uhr").innerHTML = h + ":" + m + ":" + s;
+            setTimeout(uhrzeit, 500);
+        }
+
+        function fuehrendeNull(zahl) {
+            return (zahl < 10 ? "0" + zahl : zahl);
+        }
+
+        uhrzeit();
+    </script>
+
+</body>
+</html>
