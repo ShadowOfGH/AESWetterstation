@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Navigation Beispiel</title>
+
+    <nav>
+        <img src="AESLogo.png" alt="Logo">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Über uns</a></li>
+        </ul>
+    </nav>
+</head>
+
+<body>
+    <h1 class="highlighted-heading">Willkommen auf unserer Website!</h1>
+
+    <!-- Container für die Text-Bild-Blöcke -->
+    <div class="content">
+        <div class="left-side">
+            <div class="text-block">
+                <h2>Textblock 1</h2>
+                <p>Dies ist der Inhalt des ersten Textblocks.</p>
+            </div>
+            <div class="text-block">
+                <h2>Textblock 2</h2>
+                <p>Dies ist der Inhalt des zweiten Textblocks.</p>
+            </div>
+            <div class="text-block">
+                <h2>Textblock 3</h2>
+                <p>Dies ist der Inhalt des dritten Textblocks.</p>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <img src="image1.png" alt="Bild 1">
+            <img src="image2.png" alt="Bild 2">
+            <img src="image3.png" alt="Bild 3">
+        </div>
+    </div>
+
+    <script>
+        // JavaScript, um das Menü aus menu.html zu laden
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-container').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
