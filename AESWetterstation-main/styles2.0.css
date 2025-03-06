@@ -1,0 +1,121 @@
+/* Das Layout der Website */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+
+
+h1.highlighted-heading {
+    background-color: #005186; /* Gelb als Hintergrundfarbe */
+    color: white; /* Weiße Schriftfarbe */
+    padding: 20px;
+    border-radius: 5px; /* Gerundete Ecken */
+    max-width: 28%; /* Maximal 80% der Breite */
+    text-align: left;
+    margin: 10px; /* Abstand vom Rand */
+}
+
+nav {
+    background-color: #333;
+    padding: 25px;
+}
+
+nav img {
+    height: 40px;
+    float: left;
+    margin-top: -20px;
+}
+
+nav ul {
+    list-style-type: none;
+    float: right;
+    margin-top: -9px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.content {
+    display: flex;
+    height: 100vh; /* Volle Bildschirmhöhe */
+}
+
+.right-side {
+    width: 25%;
+    height: 100vh;
+}
+
+.left-side {
+    width: 75%;
+    height: 100vh;
+    background-color: #dfdfdf; 
+    padding: 20px;
+    overflow-y: auto; /* Falls der Inhalt den Bildschirm überschreitet */
+}
+
+.right-side {
+    background-color: #005186; /* Blaue Hintergrundfarbe */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-block {
+    margin-bottom: 20px;
+    background-color: #f2f2f2; /* Heller Hintergrund für die Textblöcke */
+    padding: 20px;
+    border-radius: 10px; /* Abgerundete Ecken */
+}
+
+.text-block h2 {
+    color: #333; /* Dunkle Schriftfarbe für den Titel */
+}
+
+.text-block  {
+    color: #333; /* Dunkle Schriftfarbe für den Text */
+}
+
+.right-side img {
+    max-width: 400px;
+    margin: 10px 0;
+}
+
+footer {
+    background-color: #333;
+    padding: 15px;
+}
+
+
+footer img {
+    height: 40px;
+    float: left;
+    margin-top: -20px;
+}
+
+footer ul {
+    list-style-type: none;
+    float: right;
+    margin-top: -9px;
+}
+
+footer ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+

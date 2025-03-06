@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Navigation Beispiel</title>
+
+    <nav>
+        <img src="AESLogo.png" alt="Logo">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Über uns</a></li>
+        </ul>
+    </nav>
+</head>
+
+<body>
+
+    <div class="header-bar">
+        <h1 class="highlighted-heading">Willkommen auf unserer Website!</h1>
+    </div>
+
+    <!-- Container für die Text-Bild-Blöcke -->
+<div class="content">
+    <div class="left-side">
+        <div class="text-block">
+            <h2>Textblock 1</h2>
+            <txt>rem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</txt>
+        </div>
+        <div class="text-block">
+            <h2>Textblock 2</h2>
+            <txt>Der Inhalt vom zweiten Textblock ist von besonderem Wert, da er darstellt, wie professionell die Website generell gestaltet ist, nicht nur wie sie auf den ersten Blick erscheint.</txt>
+        </div>
+        <div class="text-block">
+            <h2>Textblock 3</h2>
+            <txt>Dies ist der Inhalt des dritten Textblocks.</txt>
+        </div>
+    </div>
+
+    <div class="right-side">
+        <img src="image1.png" alt="Bild 1">
+        <img src="image2.png" alt="Bild 2">
+        <img src="image3.png" alt="Bild 3">
+    </div>
+</div>
+
+
+    <script>
+        // JavaScript, um das Menü aus menu.html zu laden
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-container').innerHTML = data;
+            });
+    </script>
+</body>
+
+
+<footer>
+    <nav>
+        
+    </nav>
+</footer>
+
+</html>
+
+</html>
