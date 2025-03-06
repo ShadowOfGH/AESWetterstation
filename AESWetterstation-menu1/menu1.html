@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Navigation Beispiel</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+
+    <nav>
+        <img src="AESLogo.png" alt="Logo">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Über uns</a></li>
+        </ul>
+    </nav>
+</head>
+
+<body>
+    <div class="centered-heading">
+        <h1>KI-AG</h1>
+    </div>
+
+    <!-- Content Container mit 2 Textfelder-->
+    <div class="content-container">
+        <div class="bild-field">
+            <img src="TextfeldHintergrund1.jpg" width="800"; height= "500">
+        </div>
+
+        <div class="bild-field">
+            <img src="TextfeldHintergrund2.jpg" width="800" height="500">
+        </div>
+    </div>
+
+    <div id="about"></div>
+
+    <style>
+        /* Zentrieren der Überschrift auf der Seite */
+        .centered-heading {
+            display: flex;
+            justify-content: center; /* Horizontales Zentrieren */
+            align-items: center; /* Vertikales Zentrieren */
+            height: 20vh; /* Volle Höhe des Viewports */
+            text-align: center; /* Text zentrieren */
+        }
+
+        /* Stil für die Überschrift "KI-AG" */
+        .centered-heading h1 {
+            font-size: 80px; /* Sehr große Schriftgröße */
+            font-weight: bold; /* Fettgedruckt */
+            color: #333; /* Textfarbe */
+        }
+
+        /* Container, der 2 Textfelder nebeneinander anornet */
+        .content-container {
+            display: flex; /* Die Felder nebeneinander */
+            justify-content: space-between;
+            padding: 20px;
+            gap: 5%; /* Gleicher Abstand zwischen Textfeld und Videofeld */
+        }
+
+        /* Formatierung für den Titel im Bildfeld */
+        .bild-field h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        /* Formatierung für den Text im Bildfeld */
+        .bild-field p {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</body>
+</html>
