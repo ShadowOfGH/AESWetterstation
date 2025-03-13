@@ -12,7 +12,8 @@
         <img src="AESLogo.png" alt="Logo">
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#about">Über uns</a></li>
+            <li><a href="menu1.html">Über uns</a></li>
+            <li><a href="Wetterbericht.html">Wetterbericht</a></li>
         </ul>
     </nav>
 </head>
@@ -22,121 +23,54 @@
         <h1>KI-AG</h1>
     </div>
 
-    <div class="video-field">
-        <video width="600" controls>
-            <source src="dein-video.mp4" type="video/mp4">
-            Dein Browser unterstützt das Videoformat nicht.
-        </video>
+    <!-- Content Container mit 2 Textfelder-->
+    <div class="content-container">
+        <div class="bild-field">
+            <img src="TextfeldHintergrund1.jpg" width="800"; height= "500">
+        </div>
+
+        <div class="bild-field">
+            <img src="TextfeldHintergrund2.jpg" width="800" height="500">
+        </div>
     </div>
 
     <div id="about"></div>
 
-    <div class="bottom-container">
-        <div class="text-field">
-            <p>Hier kannst du mehr über uns erfahren!</p>
-        </div>
-        <div class="bottom-section">
-            <p style="font-size: 32px; font-weight: bold;">Hast du Lust?</p>
-            <button onclick="alert('Willkommen!')">Mach mit!</button>
-        </div>
-        <div class="image-field">
-            <img src="example-image.jpg" alt="Beispielbild">
-        </div>
-    </div>
-
     <style>
-        .content-container {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-        }
-
-        .text-field {
-            width: 30%;
-            padding: 20px;
-            background-color: #f4f4f4;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .text-field h2 {
-            font-size: 24px;
-            color: #333;
-        }
-
-        .text-field p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        .video-field {
-            width: 45%;
-            padding: 70px;
-            background-color: #f4f4f4;
-            border-radius: 20px;
-        }
-
-        .video-field h2 {
-            font-size: 24px;
-            color: #333;
-        }
-
-        video {
-            width: 100%;
-            border-radius: 8px;
-        }
-
+        /* Zentrieren der Überschrift auf der Seite */
         .centered-heading {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 20vh;
-            text-align: center;
+            justify-content: center; /* Horizontales Zentrieren */
+            align-items: center; /* Vertikales Zentrieren */
+            height: 20vh; /* Volle Höhe des Viewports */
+            text-align: center; /* Text zentrieren */
         }
 
+        /* Stil für die Überschrift "KI-AG" */
         .centered-heading h1 {
-            font-size: 80px;
-            font-weight: bold;
+            font-size: 80px; /* Sehr große Schriftgröße */
+            font-weight: bold; /* Fettgedruckt */
+            color: #333; /* Textfarbe */
+        }
+
+        /* Container, der 2 Textfelder nebeneinander anornet */
+        .content-container {
+            display: flex; /* Die Felder nebeneinander */
+            justify-content: space-between;
+            padding: 20px;
+            gap: 5%; /* Gleicher Abstand zwischen Textfeld und Videofeld */
+        }
+
+        /* Formatierung für den Titel im Bildfeld */
+        .bild-field h2 {
+            font-size: 24px;
             color: #333;
         }
 
-        .bottom-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 500px;
-            padding: 20px;
-        }
-
-        .bottom-section {
-            text-align: center;
-            font-size: 24px;
-            width: 30%;
-        }
-
-        .bottom-section button {
-            font-size: 20px;
-            padding: 10px 20px;
-            margin-top: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .bottom-section button:hover {
-            background-color: #0056b3;
-        }
-
-        .image-field {
-            width: 30%;
-            text-align: center;
-        }
-
-        .image-field img {
-            width: 100%;
-            border-radius: 8px;
+        /* Formatierung für den Text im Bildfeld */
+        .bild-field p {
+            font-size: 16px;
+            color: #555;
         }
     </style>
 </body>
