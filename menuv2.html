@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Navigation Beispiel</title>
+
+    <nav>
+        <img src="AESLogo.png" alt="Logo">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="menu1.html">Über uns</a></li>
+            <li><a href="Wetterbericht.html">Wetterbericht</a></li>
+        </ul>
+    </nav>
+</head>
+
+<body>
+    <div class="background-container">
+        <div class="overlay-text">
+            <h1>KI-AG</h1>
+            <p>Dies ist ein Text auf dem Hintergrundbild, das die gesamte Seite abdeckt.</p>
+        </div>
+
+        <!-- Button placed on top of the background -->
+        <div class="button-container">
+            <button onclick="window.location.href='Test.html'">Mach mit!</button>
+        </div>
+    </div>
+
+    <style>
+        body, html {
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Ensure the body takes up the full height of the viewport */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: auto; /* Ensure vertical scrolling works when needed */
+        }
+
+        /* Background Image Container */
+        .background-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            background-image: url('TextfeldHintergrund1.jpg'); /* Replace with your background image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            flex-direction: column; /* Stack items vertically */
+        }
+
+        /* Overlay text style */
+        .overlay-text {
+            text-align: center;
+            color: white;
+            z-index: 10; /* Ensure text stays above the background */
+        }
+
+        .overlay-text h1 {
+            font-size: 80px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .overlay-text p {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333333; /* Dark grey background for the navigation bar */
+            z-index: 1000; /* Ensure navigation bar is above other content */
+            padding: 5px 20px; /* Reduced padding to make the navbar slimmer */
+            height: 40px; /* Adjusted height for a slimmer look */
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center; /* Vertically center the items */
+            height: 100%; /* Make sure the items fill the full height of the nav */
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px; /* Reduced font size for a sleeker look */
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #007BFF;
+        }
+
+        /* Button Container */
+        .button-container {
+            z-index: 20; /* Ensure the button is on top of other elements */
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            font-size: 20px;
+            padding: 10px 200px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</body>
+</html>
